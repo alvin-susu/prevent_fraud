@@ -79,11 +79,14 @@ def predict(model, tokenizer, prompt, device='cuda', debug=True):
 if __name__ == "__main__":
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
-    model_dir = r'D:\Pretrained_models\Qwen\Qwen2-7B-Instruct'
+    # model_dir = r'D:\Pretrained_models\Qwen\Qwen2-7B-Instruct'
+    model_dir = r'D:\Pretrained_models\Qwen\Qwen2-1___5B-Instruct'
     model, tokenizer = load_model(model_dir=model_dir, device=device)
     # for name,param in model.named_parameters():
     #     print(name, param.device)
 
+
     prompt = "请简短介绍下大语言模型"
-    result = predict(model=model, tokenizer=tokenizer, prompt=prompt, device=device, debug=True)
+    # prompt = "下面是一段对话文本，请分析对话内容是否有诈骗风险，只以json格式输出你的判断结果(is_fraud:true/false)，\n\n诈骗分子：您好，我是国家公益抽奖中心的工作人员，恭喜您获得大奖！请提供您的银行账号信息。\n用户：真的吗？我没有参与过抽奖活动，能详细说明吗？\n诈骗分子：这是随机抽取的奖项，请提供身份证号码和开户行信息以核实身份，奖金核实后立即到账。\n用户：听起来不靠谱，我需要核实，能给我官方网站或联系电话吗？\n诈骗分子：此活动为内部通知，无公开电话官网，请尽快提供信息，奖金马上到账！\n\n诈骗分子：您好，我是某某银行安全客服。检测到您的账户存在异常登录风险，为保障资金安全，请确认账户信息并修改密码。\n用户：账户异常？我没收到短信或邮件，这是什么情况？\n诈骗分子：系统升级导致部分用户需验证，请提供银行卡号和预留手机号码，我们将安排紧急冻结和风险排查。\n用户：银行通常不会这样联系，我需要去柜台核实。\n诈骗分子：为保障您的资金安全，请理解系统自动风险提示，若延误核实可能资金受损，请尽快回复信息。\n\n诈骗分子：您好，我这里有一项绝佳投资机会，保证高收益且风险极低，只需小额投资即可获得翻倍回报，您有兴趣吗？\n用户：高收益往往伴随高风险，这项目有官方认证或第三方评估报告吗？\n诈骗分子：项目由内部独家渠道获得，现处于限时开放阶段，信息保密，请先转入“风险保证金”，后续安排专业顾问跟进。\n用户：风险太大，我不想冒险，请先提供更多证明材料。\n诈骗分子：机会稍纵即逝，投资越早回报越快，请您立即转账，我将发送详细后续流程说明。"
+    result = predict(model=model, tokenizer=tokenizer, prompt=prompt, device=device, debug=False)
     print(result)
