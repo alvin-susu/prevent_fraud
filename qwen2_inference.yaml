@@ -1,0 +1,8 @@
+model_name_or_path: D:\pycharm_project\prevent_fraud\export
+# 指定要使用的推理模板，一般是与模型架构绑定
+template: qwen
+# 指定后端使用的推理框架 这里使用vllm加速推理
+infer_backend: vllm
+# 设为false可以启用cuda计算进行推理性能优化
+vllm_enforce_eager: false
+trust_remote_code: true

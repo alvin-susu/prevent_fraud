@@ -1,41 +1,11 @@
 ### model
-model_name_or_path: meta-llama/Meta-Llama-3-8B-Instruct
+model_name_or_path: D:\Pretrained_models\Qwen\Qwen2-1___5B-Instruct
+adapter_name_or_path: D:\pycharm_project\prevent_fraud\Qwen2-1___5B-Instruct_ft_0213_15_46\checkpoint-100
+template: qwen
 trust_remote_code: true
 
-### method
-stage: sft
-do_train: true
-finetuning_type: lora
-lora_rank: 8
-lora_target: all
-
-### dataset
-dataset: identity,alpaca_en_demo
-template: llama3
-cutoff_len: 2048
-max_samples: 1000
-overwrite_cache: true
-preprocessing_num_workers: 16
-
-### output
-output_dir: saves/llama3-8b/lora/sft
-logging_steps: 10
-save_steps: 500
-plot_loss: true
-overwrite_output_dir: true
-
-### train
-per_device_train_batch_size: 1
-gradient_accumulation_steps: 8
-learning_rate: 1.0e-4
-num_train_epochs: 3.0
-lr_scheduler_type: cosine
-warmup_ratio: 0.1
-bf16: true
-ddp_timeout: 180000000
-
-### eval
-# val_size: 0.1
-# per_device_eval_batch_size: 1
-# eval_strategy: steps
-# eval_steps: 500
+### export
+export_dir: D:\pycharm_project\prevent_fraud\export
+export_size: 2 # 指定导出的模型文件分片大小，单位为GB，适用于模型比较大需要分片导出的场景，以便在内存限制的设备上加载
+export_device: cuda # 导出模型时使用的设备
+export_legacy_format: false # 指定是否使用九个师导出模型，通常情况下，选择false以导出使用最新格式的模型
